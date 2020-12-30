@@ -17,6 +17,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate
     @IBOutlet weak var timeLabel: UILabel!
     var prayTimes: Array<String> = Array()
     let locationManager = CLLocationManager()
+    static let geocodeApiKey = "AIzaSyDY6iFTopd-otn_r-GLX08h0gBPavPjTcU"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,7 +116,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate
             
             print(prayTimes)
             
-        Alamofire.request("https://maps.googleapis.com/maps/api/geocode/json?latlng=\(location.coordinate.latitude),\(location.coordinate.longitude)&sensor=true&key=AIzaSyDY6iFTopd-otn_r-GLX08h0gBPavPjTcU").responseJSON { response in
+        Alamofire.request("https://maps.googleapis.com/maps/api/geocode/json?latlng=\(location.coordinate.latitude),\(location.coordinate.longitude)&sensor=true&key=\(geocodeApiKey)").responseJSON { response in
                 
                 switch response.result {
                 case .success(let value):
